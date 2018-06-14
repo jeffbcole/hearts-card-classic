@@ -1,4 +1,4 @@
-# jeffbcole.github.io
+# Hearts Card Classic
 
 A hearts card game for your browser.  This card game is written entirely in pure JavaScript and CSS.
 
