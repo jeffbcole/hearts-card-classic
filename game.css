@@ -1,0 +1,912 @@
+#confirm_crib_region {
+    position: absolute;
+    transform: translate(-50%, 0%);
+    width: 170px;
+    height: 40px;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#confirm_crib_button {
+    position: absolute;
+    cursor: pointer;
+    border:#FFFFFF 2px solid;
+    border-radius:5px;
+    background:#000000;
+    color:white;
+    width: 170px;
+    height: 30px;
+    font-size:12pt;
+}
+
+#confirm_crib_button:hover {
+    background:#222222;
+}
+
+#confirm_crib_region_shadow {
+    position: absolute;
+    background: rgba(0,0,0,0.5);
+    border-radius: 5px;
+    width: 170px;
+    height: 30px;
+    left: 10px;
+    top: 10px;
+}
+
+#select_low_card_message {
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 16pt;
+    text-shadow: 2pt 2pt rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.low_card_text {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    font-size: 16pt;
+    text-align: center;
+    width: 115px;
+    transform: translate(-50%, 0%);
+    text-shadow: 2pt 2pt rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -moz-user-focus: none;
+}
+
+#low_card_result_message {
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    z-index: 600;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+#low_card_result_text {
+    text-align: center;
+    font-size: 16pt;
+    text-shadow: 2pt 2pt rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -moz-user-focus: none;
+}
+
+#low_card_selected_accept_button {
+    cursor: pointer;
+    border: #FFFFFF 2px solid;
+    border-radius: 15px;
+    background: #000000;
+    color: white;
+    min-width: 120px;
+    height: 35pt;
+    font-size: 20pt;
+    margin-top: 10px;
+    box-shadow: 10pt 10pt 0pt rgba(0, 0, 0, 0.5);
+}
+
+#low_card_selected_accept_button:hover {
+    background: #222222;
+}
+
+#crib_region {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 150px;
+    height: 169px;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+}
+
+.crib_region_border {
+    background: white;
+    border-radius: 3px;
+}
+
+#crib_region_top_left_side {
+    position: absolute;
+    left: 0px;
+    top:0px;
+    width: 4px;
+    height: 40px;
+}
+
+#crib_region_top_left_top {
+    position: absolute;
+    left: 0px;
+    top:0px;
+    width: 30px;
+    height: 4px;
+}
+
+#crib_region_top_right_top {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 30px;
+    height: 4px;
+}
+
+#crib_region_top_right_side {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 4px;
+    height: 40px;
+}
+
+#crib_region_bottom_right_side {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 4px;
+    height: 40px;
+}
+
+#crib_region_bottom_right_bottom {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 30px;
+    height: 4px;
+}
+
+#crib_region_bottom_left_side {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 4px;
+    height: 40px;
+}
+
+#crib_region_bottom_left_bottom {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 30px;
+    height: 4px;
+}
+
+#crib_region_center_text {
+    position: absolute;
+    font-size: 12pt;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    margin: auto;
+}
+
+#crib_region_prompt {
+    position: absolute;
+    font-size: 8pt;
+    text-align: center;
+    width: 100%;
+    bottom: 0px;
+    margin-bottom: 10px;
+}
+
+#crib_indicator_card_overlap {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    height: 60px;
+    width: 115px;
+    text-align: center;
+    font-size: 12pt;
+    transform: translate(-50%,-50%);
+    visibility: hidden;
+    opacity: 0;
+}
+
+#BubbleScorePlayerTemplate {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.BubbleScorePlayer {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgb(0, 0, 190);
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 15px 15px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+.BubbleScoreGlare {
+    position: absolute;
+    width: 80px;
+    height: 20px;
+    left: 10px;
+    top: 1px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.5); /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(180deg, rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(180deg, rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(180deg, rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0));/* For Firefox 3.6 to 15 */
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0));
+}
+
+.BubbleScoreBottomGlare {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    margin-left: 0px;
+    margin-top: 50px;
+    border-radius: 20px;
+    background: -webkit-linear-gradient(0deg, rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0) 20%); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(0deg, rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0) 20%); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(0deg, rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0) 20%);/* For Firefox 3.6 to 15 */
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0) 20%);
+}
+
+.BubbleScoreDescription {
+    font-size: 10pt;
+    line-height: 15px;
+}
+
+.BubbleScorePoints {
+    font-size: 42pt;
+    line-height: 50px;
+    font-weight: bold;
+}
+
+.BubbleScorePointsLabel {
+    font-size: 10pt;
+    line-height: 15px;
+}
+
+#PeggingCountIndicator {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    width: 115px;
+    height: 75px;
+    overflow: visible;
+}
+
+#PeggingCountCard {
+    position: absolute;
+    background:#000000;
+	border:#FFFFFF 2px solid;
+    border-radius:10px;
+    width: 115px;
+    height: 75px;
+    font-size: 10pt;
+    text-align: center;
+}
+
+#PeggingCountCardShadow {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    background:rgba(0, 0, 0, 0.5);
+	border-radius:10px;
+    width: 115px;
+    height: 75px;
+}
+
+#PeggingCountIndicatorScore {
+    font-size: 30pt;
+    line-height: 40px;
+}
+
+#pegging_prompt, #manual_prompt {
+    position: absolute;
+    text-align: center;
+    font-size: 11pt;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(-50%,-50%);
+}
+
+#computer_says_go {
+    position: absolute;
+    width: 115px;
+    height: 55px;
+    overflow: visible;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 150;
+}
+
+#computer_says_go_card {
+    position: absolute;
+    background:#000000;
+	border:#FFFFFF 2px solid;
+    border-radius:10px;
+    width: 115px;
+    height: 55px;
+    font-size: 10pt;
+    text-align: center;
+}
+
+#computer_says_go_shadow {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    background:rgba(0, 0, 0, 0.5);
+	border-radius:10px;
+    width: 115px;
+    height: 55px;
+}
+
+#computer_says_go_text {
+    font-size: 18pt;
+    line-height: 25px;
+}
+
+#player_says_go {
+    position: absolute;
+    width: 115px;
+    height: 65px;
+    overflow: visible;
+    z-index: 600;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#player_says_go_card {
+    position: absolute;
+    background:#000000;
+	border:#FFFFFF 2px solid;
+    border-radius:10px;
+    width: 115px;
+    height: 65px;
+    font-size: 10pt;
+    text-align: center;
+}
+
+#player_says_go_shadow {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    background:rgba(0, 0, 0, 0.5);
+	border-radius:10px;
+    width: 115px;
+    height: 65px;
+}
+
+#player_says_go_button, #allcountedOKButton {
+    cursor: pointer;
+	border:#FFFFFF 2px solid;
+	border-radius:15px;
+	background:#000000;
+	color:white;
+    font-size: 18pt;
+    width: 80px;
+}
+
+#player_says_go_button:hover, #allcountedOKButton:hover {
+	background:#222222;
+}
+
+#no_hint_view {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    overflow: visible;
+    z-index: 500;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#no_hint_view_card {
+    position: absolute;
+    background:#000000;
+	border:#FFFFFF 2px solid;
+    border-radius:10px;
+    width: 200px;
+    height: 100px;
+    font-size: 12pt;
+    text-align: center;
+}
+
+#no_hint_view_shadow {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    background:rgba(0, 0, 0, 0.5);
+	border-radius:10px;
+    width: 200px;
+    height: 100px;
+}
+
+#no_hint_view_button {
+    cursor: pointer;
+	border:#FFFFFF 2px solid;
+	border-radius:15px;
+	background:#000000;
+	color:white;
+    font-size: 16pt;
+    width: 120px;
+    margin-top: 5px;
+}
+
+#no_hint_view_button:hover {
+	background:#222222;
+}
+
+#HandScoreView, #ManualCount {
+    position: absolute;
+    width: 200px;
+    border:#FFFFFF 2px solid;
+	border-radius:20px;
+	background:#000000;
+    box-shadow: 15px 15px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+}
+
+#HandScoreTitle {
+    font-size: 12pt;
+    line-height: 25px;
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+}
+
+#HandScoreBubble {
+    width: 100px;
+    height: 100px;
+    top: 30px;
+    margin-left: 50px;
+    background: rgb(0, 0, 190);
+    border-radius: 20px;
+    text-align: center;
+}
+
+#HandScoreBubbleGlare {
+    position: absolute;
+    width: 80px;
+    height: 20px;
+    margin-left: 10px;
+    margin-top: 1px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.5); /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(180deg, rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(180deg, rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(180deg, rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0));/* For Firefox 3.6 to 15 */
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0));
+}
+
+#HandScoreBubbleBottomGlare {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    margin-left: 0px;
+    margin-top: 50px;
+    border-radius: 20px;
+    background: -webkit-linear-gradient(0deg, rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0) 20%); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(0deg, rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0) 20%); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(0deg, rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0) 20%);/* For Firefox 3.6 to 15 */
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0) 20%);
+}
+
+#HandScoreBubblePoints, #ManualScoreBubblePoints {
+    position: absolute;
+    width: 100px;
+    margin-top: 5px;
+    font-size: 44pt;
+    font-weight: bold;
+}
+
+#HandScoreBubblePointsLabel {
+    position: absolute;
+    width: 100px;
+    margin-top: 70px;
+    font-size: 12pt;
+}
+
+#HandScorePointsDescription {
+    width: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#HandScoreAcceptButton {
+    cursor: pointer;
+    margin-left: 50px;
+    width: 100px;
+    height: 40px;
+    margin-bottom: 10px;
+    background: black;
+    border:#FFFFFF 2px solid;
+    border-width: 1px;
+    border-radius: 15px;
+    color:white;
+    font-size: 16pt;
+}
+
+#HandScoreAcceptButton:hover {
+    background: #222222;
+}
+
+#RecountHandsView {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#ManualCountAcceptButton, #ManualPointConfirmButton {
+    cursor: pointer;
+    margin-left: 25px;
+    width: 150px;
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: black;
+    border:#FFFFFF 2px solid;
+    border-width: 1px;
+    border-radius: 15px;
+    color:white;
+    font-size: 11pt;
+    visibility: hidden;
+}
+
+#ManualCountAcceptButton:hover, #ManualPointConfirmButton:hover {
+    background: #222222;
+}
+
+#ManualCountAcceptButton:disabled {
+    background: #999999;
+    cursor: default;
+    color: black;
+}
+
+#ManualPointsDesc {
+    width: 100%;
+    min-height: 80px;
+    font-size: 12pt;
+    text-align: center;
+}
+
+#allcounted {
+    position: absolute;
+    width: 115px;
+    height: 80px;
+    overflow: visible;
+    z-index: 600;
+    background:#000000;
+	border:#FFFFFF 2px solid;
+    border-radius:10px;
+    font-size: 10pt;
+    text-align: center;
+    box-shadow: 15px 15px rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+}
+
+#RecountHandsButton {
+    cursor: pointer;
+	background: transparent;
+	border: none;
+    border-radius: 15pt;
+    height: 30px;
+    position: absolute;
+    margin-left: 10px;
+	z-index: 700;
+}
+
+#RecountHandsButtonImage {
+    width: 30px;
+    height: 30px;
+    margin-top: 1px;
+}
+
+#RecountHandsButton:hover {
+    background:rgba(255,255,255,0.2);
+}
+
+#RecountHandsButton:active {
+	transform: translate(1pt, 1pt);
+}
+
+#RecountHandsText {
+    position: absolute;
+    font-size: 10pt;
+    width: 70px;
+    text-align: center;
+    margin-top: 30px;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+#hint_button {
+    position: absolute;
+    cursor: pointer;
+    width: 70px;
+    height: 23px;
+    background: rgba(0, 0, 0, 0);
+    border:#FFFFFF 2px solid;
+    border-width: 1px;
+    border-radius: 7px;
+    color:white;
+    font-size: 13pt;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#hint_button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+#SuboptimalWarning {
+    z-index: 999;
+    width: 340px;
+    background:#000000;
+	border:#FFFFFF 2px solid;
+	border-radius:30px;
+	box-shadow: 30px 30px 0px rgba(0,0,0,0.5);
+	position: absolute;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+    margin: auto;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#SuboptimalWarningTitle {
+    text-align: center;
+    font-size: 16pt;
+    margin-top: 10px;
+}
+
+#SuboptimalWarningTextRegion {
+    background: red;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#SuboptimalWarningText {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.SuboptimalWarningButton {
+    cursor: pointer;
+	border:#FFFFFF 2px solid;
+	border-radius:10px;
+	background:#000000;
+	color:white;
+	width:90%;
+	height:30pt;
+	font-size:14pt;
+	margin-left:5%;
+    margin-right:5%;
+    margin-bottom: 10px;
+}
+
+.SuboptimalWarningButton:hover {
+    background: #222222;
+}
+
+#GameOverView {
+    z-index: 999;
+    width: 340px;
+    background:#000000;
+	border:#FFFFFF 2px solid;
+	border-radius:10px;
+	box-shadow: 30px 30px 0px rgba(0,0,0,0.5);
+	position: absolute;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+    margin: auto;
+    text-align: center;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#GameOverResultText {
+    margin-top: 10px;
+    font-size: 24pt;
+}
+
+#GameOverSkunkText {
+    margin-bottom: 10px;
+    font-size: 20pt;
+}
+
+#GameOverResultsTable {
+    width: 320px;
+    margin-left: 10px;
+    line-height: 25px;
+}
+
+.GameOverViewTableResultBackgroundFill {
+    width:200px; 
+    height:25px; 
+    position:absolute; 
+    right:0px; 
+    background:rgb(0, 0, 190);
+}
+
+.GameoverViewTableResultComputerFill {
+    width:100px; 
+    height:25px; 
+    position:absolute; 
+    right:0px; 
+    background:rgb(190, 0, 0);
+}
+
+.GameOverViewTableResultYouScore {
+    width:100px; 
+    position:absolute; 
+    right:100px; 
+    top:0px;
+}
+
+.GameOverViewTableResultOppScore {
+    width:100px; 
+    position:absolute; 
+    right:0px; 
+    top:0px; 
+}
+
+#GameOverSuboptimalButton {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 10px;
+    font-size: 11pt;
+    cursor: pointer;
+	border:#FFFFFF 2px solid;
+	border-radius:10px;
+	background:#000000;
+	color:white;
+}
+
+#GameOverSuboptimalButton:hover { 
+    background: #222222;
+}
+
+#GameOverSuboptimalPlaysView {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    width: 100%;
+    height: 200px;
+    overflow: auto;
+    text-align: center;
+    font-size: 8pt;
+}
+
+.GameOverSuboptimalHeader {
+    width: 100%;
+    background: #1BA1E2;
+    font-size: 11pt;
+    font-weight: bold;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    display: none;
+}
+
+.GameOverSuboptimalPegging {
+    width: 100%;
+    height: 75px;
+    position: relative;
+    display: none;
+}
+
+.GameOverSuboptimalDiscard {
+    width: 100%;
+    height: 75px;
+    position: relative;
+    cursor: pointer;
+    display: none;
+}
+
+.GameOverSuboptimalDiscard:hover {
+    background: #222222;
+}
+
+.GameOverSuboptimalDiscard:active {
+    transform: scale(0.98);
+}
+
+.suboptimalSituation {
+    position: absolute;
+    width: 130px;
+    margin-top: 3px;
+}
+
+.suboptimalYouPlayed {
+    position: absolute;
+    width: 80px;
+    margin-left: 145px;
+    margin-top: 3px;
+}
+
+.suboptimalPlayedLine1 {
+    position: absolute;
+    width: 40px;
+    margin-left: 188px;
+    margin-top: 22px;
+}
+
+.suboptimalPlayedLine2 {
+    position: absolute;
+    width: 40px;
+    margin-left: 188px;
+    margin-top: 37px;
+    font-weight: bold;
+    font-size: 12pt;
+}
+
+.suboptimalPlayedLine3 {
+    position: absolute;
+    width: 40px;
+    margin-left: 188px;
+    margin-top: 55px;
+}
+
+.suboptimalOptimalPlay {
+    position: absolute;
+    width: 80px;
+    margin-left: 240px;
+    margin-top: 3px;
+}
+
+.suboptimalOptimalLine1 {
+    position: absolute;
+    width: 40px;
+    margin-left: 283px;
+    margin-top: 22px;
+}
+
+.suboptimalOptimalLine2 {
+    position: absolute;
+    width: 40px;
+    margin-left: 283px;
+    margin-top: 37px;
+    font-weight: bold;
+    font-size: 12pt;
+}
+
+.suboptimalOptimalLine3 {
+    position: absolute;
+    width: 40px;
+    margin-left: 283px;
+    margin-top: 55px;
+}
+
+.suboptimalDivider {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    margin-top: 73px;
+    background: white;
+}
+
+#game_over_close_button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}

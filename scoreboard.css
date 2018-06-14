@@ -1,0 +1,421 @@
+
+#scoreboard_leftColumn {
+    position: absolute;
+    left: 0%;
+    top: 20px;
+    width: 28px;
+    height: calc(100% - 20px);
+    margin-left: 40px;
+    pointer-events: none;
+}
+
+#scoreboard_topRow {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    height: 76px;
+    margin-top: 20px;
+    margin-left: 40px;
+    width: calc(100% - 80px);
+    pointer-events: none;
+}
+
+#scoreboard_rightColumn {
+    position: absolute;
+    right: 0%;
+    top: 20px;
+    width: 28px;
+    height: calc(100% - 20px);
+    margin-right: 40px;
+    pointer-events: none;
+}
+
+#scoreboard_leftColumn, #scoreboard_topRow, #scoreboard_rightColumn {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome and Opera */
+}
+
+#skunk_line_vertical {
+    background: url('images/scoreboard_skunk_vertical.png');
+    width: 59px;
+    height: 50px;
+    position: absolute;
+    opacity: 0;
+}
+
+#skunk_line_horizontal {
+    background: url('images/scoreboard_skunk_horizontal.png');
+    width: 91px;
+    height: 13px;
+    position: absolute;
+    opacity: 0;
+}
+
+.scoreboard_pegholes_left_side_vertical {
+    position: absolute;
+    transform-origin: 0px 0px;
+    transform: rotate(90deg) translate(0px, -28px);
+}
+
+.scoreboard_pegholes_right_side_vertical {
+    position: absolute;
+    transform-origin: 0px 0px;
+    transform: rotate(90deg) translate(0px, -28px);
+    top: 100px;
+}
+
+.scoreboard_pegholes_horizontal {
+    position: absolute;
+    top: 0px;
+    left: 200px;
+}
+
+.scoreboard_pegholes_turn_right {
+    position: absolute;
+    top: 0px;
+    right: 0%;
+    transform-origin: 0px 0px;
+    transform: rotate(90deg) translate(0px, -58px);
+}
+
+.scoreboard_pegholes_start {
+    position: absolute;
+    left: 0%;
+}
+
+.scoreboard_pegholes_finish {
+    position: absolute;
+    right: 0%;
+    top: 200px;
+}
+
+#scoreboard_pegs_score_view {
+    transition: 0.6s linear;
+    opacity: 0;
+    position: absolute;
+    right: 0%;
+    top: calc(100% - 10px);
+    transform: translate(0%,-100%);
+    font-size: 14pt;
+    margin-right: 10pt;
+    text-shadow: 2px 2px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+#scoreboard_pegs_score_you_points_container, #scoreboard_pegs_score_opp_points_container {
+    overflow: hidden;
+}
+
+#scoreboard_pegs_score_you_points, #scoreboard_pegs_score_opp_points {
+    width: 40px;
+    font-weight: bold;
+    font-size: 18pt;
+}
+
+#scoreboard_pegs_crib_indicator_group {
+    transform: translate(0px, -14px);
+    padding-right: 10pt;
+}
+
+#scoreboard_pegs_score_crib_indicator {
+    float: left;
+    font-size: 12pt;
+    margin-right: 1px;
+    margin-top: 1px;
+}
+
+#scoreboard_pegs_score_crib_arrow {
+    float: left;
+}
+
+.arrow-right {
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid white;
+    transform: translate(2px,2px);
+}
+
+.arrow-right-shadow {
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid rgba(0,0,0,0.5);
+    transform: translate(4px,4px);
+}
+
+.arrow-down {
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid white;
+    transform: translate(2px,2px);
+}
+
+.arrow-down-shadow {
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid rgba(0,0,0,0.5);
+    transform: translate(0px,4px);
+}
+
+.scoreboard_pegs_peg {
+    position: absolute;
+    opacity: 0;
+}
+
+#scoreboard_compact {
+    width: 170px;
+    height: 100px;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    font-size: 14pt;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s linear;
+}
+
+#scoreboard_compact_crib_indicator {
+    position: absolute;
+    left: -13px;
+    top: 15px;
+    transform: rotate(-90deg);
+    text-shadow: -2px 2px rgba(0,0,0,0.5);
+}
+
+#scoreboard_compact_crib_indicator_group {
+    transition: 0.6s ease-in-out;
+}
+
+#scoreboard_compact_score_crib_indicator {
+    font-size: 11pt;
+    width: 50px;
+}
+
+#scoreboard_compact_score_crib_arrow {
+    margin-left: 15px;
+}
+
+#scoreboard_compact_you_text {
+    position: absolute;
+    left: 18px;
+    top: 15px;
+    font-size: 12pt;
+    width: 50px;
+    transform: rotate(-90deg);
+    text-shadow: -2px 2px rgba(0,0,0,0.5);
+}
+
+#scoreboard_compact_you_left_nib_shadow {
+    position: absolute;
+    width:3px;
+    height:10px;
+    background: rgba(0,0,0,0.5);
+    left: 62px;
+    top: 42px;
+}
+
+#scoreboard_compact_you_back_bar_shadow {
+    position: absolute;
+    left: 65px;
+    top: 45px;
+    width: 100px;
+    height: 3px;
+    background: rgba(0,0,0,0.5);
+}
+
+#scoreboard_compact_you_right_nib_shadow {
+    position: absolute;
+    left: 165px;
+    top: 42px;
+    width:3px;
+    height:10px;
+    background: rgba(0,0,0,0.5);
+}
+
+#scoreboard_compact_you_left_nib {
+    position: absolute;
+    width:3px;
+    height:10px;
+    background: white;
+    left: 60px;
+    top: 40px;
+}
+
+#scoreboard_compact_you_back_bar {
+    position: absolute;
+    left: 63px;
+    top: 43px;
+    width: 100px;
+    height: 3px;
+    background: white;
+}
+
+#scoreboard_compact_you_right_nib {
+    position: absolute;
+    left: 163px;
+    top: 40px;
+    width:3px;
+    height:10px;
+    background: white;
+}
+
+#scoreboard_compact_you_fill_bar {
+    position: absolute;
+    left: 63px;
+    top: 43px;
+    width: 0px;
+    height: 3px;
+    background: blue;
+    transition: 0.3s linear;
+}
+
+#scoreboard_compact_you_peg {
+    position: absolute;
+    left: 48px;
+    top: 14px;
+    transition: 0.3s linear;
+}
+
+#scoreboard_compact_you_score_container {
+    position: absolute;
+    font-size: 20pt;
+    font-weight: bold;
+    height: 43px;
+    line-height: 50px;
+    width: 100px;
+    left: 63px;
+    top: 0px;
+    text-shadow: 2px 2px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+#scoreboard_compact_you_score {
+    position: absolute;
+    font-size: 20pt;
+    font-weight: bold;
+    height: 50px;
+    line-height: 50px;
+    width: 100px;
+    text-shadow: 2px 2px rgba(0,0,0,0.5);
+}
+
+#scoreboard_compact_opp_text {
+    position: absolute;
+    left: 18px;
+    top: 65px;
+    font-size: 12pt;
+    width: 50px;
+    transform: rotate(-90deg);
+    text-shadow: -2px 2px rgba(0,0,0,0.5);
+}
+
+#scoreboard_compact_opp_left_nib_shadow {
+    position: absolute;
+    width:3px;
+    height:10px;
+    background: rgba(0,0,0,0.5);
+    left: 62px;
+    top: 92px;
+}
+
+#scoreboard_compact_opp_back_bar_shadow {
+    position: absolute;
+    left: 65px;
+    top: 95px;
+    width: 100px;
+    height: 3px;
+    background: rgba(0,0,0,0.5);
+}
+
+#scoreboard_compact_opp_right_nib_shadow {
+    position: absolute;
+    left: 165px;
+    top: 92px;
+    width:3px;
+    height:10px;
+    background: rgba(0,0,0,0.5);
+}
+
+#scoreboard_compact_opp_left_nib {
+    position: absolute;
+    width:3px;
+    height:10px;
+    background: white;
+    left: 60px;
+    top: 90px;
+}
+
+#scoreboard_compact_opp_back_bar {
+    position: absolute;
+    left: 63px;
+    top: 93px;
+    width: 100px;
+    height: 3px;
+    background: white;
+}
+
+#scoreboard_compact_opp_right_nib {
+    position: absolute;
+    left: 163px;
+    top: 90px;
+    width:3px;
+    height:10px;
+    background: white;
+}
+
+#scoreboard_compact_opp_fill_bar {
+    position: absolute;
+    left: 63px;
+    top: 93px;
+    width: 0px;
+    height: 3px;
+    background: red;
+    transition: 0.3s linear;
+}
+
+#scoreboard_compact_opp_peg {
+    position: absolute;
+    left: 48px;
+    top: 64px;
+    transition: 0.3s linear;
+}
+
+#scoreboard_compact_opp_score_container {
+    position: absolute;
+    font-size: 20pt;
+    font-weight: bold;
+    height: 43px;
+    line-height: 50px;
+    width: 100px;
+    left: 63px;
+    top: 50px;
+    text-shadow: 2px 2px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+#scoreboard_compact_opp_score {
+    position: absolute;
+    font-size: 20pt;
+    font-weight: bold;
+    height: 50px;
+    line-height: 50px;
+    width: 100px;
+    text-shadow: 2px 2px rgba(0,0,0,0.5);
+}
