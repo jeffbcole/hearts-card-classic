@@ -40,6 +40,26 @@
     pointer-events: none;
 }
 
+.cardFrontShade {
+    position: absolute;
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    opacity: 0;
+}
+
+.cardFrontHighlight {
+    position: absolute;
+    border-radius: 8px;
+    width: 104%;
+    height: 104%;
+    left: -3.5%;
+    top: -3%;
+    border: 2px solid white;
+    opacity: 0;
+}
+
 .cardShadow {
     position: absolute;
     border-radius: 9px;
@@ -82,16 +102,32 @@
 
 .bump {
     animation-name: bump;
-    animation-duration: 0.6s;
+    animation-duration: 1s;
     animation-iteration-count: 1;
 }
 
 @keyframes bump {
     50% {
-        transform: translate(-57px,-70%);
+        transform: translate(0px,-40%);
     }
     100% {
-        transform: translate(-57px,-50%);
+        transform: translate(0px,0%);
+    }
+}
+
+.flashHighlight {
+    animation-name: flashHighlight;
+    animation-delay: 500ms;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+}
+
+@keyframes flashHighlight {
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
     }
 }
 

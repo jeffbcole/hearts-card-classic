@@ -45,7 +45,7 @@ body {
 	font-size: 30pt;
 }
 
-#cribbage_title {
+#game_title {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -186,7 +186,7 @@ body {
 
 #menu_settings {
 	width:450px;
-	height: 500px;
+	height: 400px;
 	top:100%;
 }
 
@@ -201,7 +201,7 @@ body {
 }
 
 #menu_statistics {
-	width:380px;
+	width:480px;
 	top:100%;
 }
 
@@ -522,6 +522,19 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 } 
+
+#losing_score_dropdown {
+	font-size: 16pt;
+	background: #2196F3;
+	color:white;
+}
+
+#losing_score_dropdown option {
+	background: #000; 
+  	color: #fff; 
+	box-shadow: inset 20px 20px white;
+	font-size: 16pt;
+}
 
 .image-selector {
 	margin-left:5%;
