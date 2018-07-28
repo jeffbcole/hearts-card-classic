@@ -35,7 +35,7 @@
 			}
 			UpdateBackgroundImageFromSettings();
 			setTimeout(function () {
-				ShowMainMenu();
+				ShowMainMenu(false);
 				ShowTitle();
 			}, 500);
 
@@ -50,6 +50,7 @@
 	<script type="text/javascript" src="game.js"></script>
 	<script type="text/javascript" src="scoreboard.js"></script>
 	<script type="text/javascript" src="player.js"></script>
+	<script type="text/javascript" src="GameSimulator.js"></script>
 
 </head>
 
@@ -88,7 +89,7 @@
 		<div id="moon_shoot_text"></div>
 
 		<button id="hint_button" onclick="game.OnHintButtonClick()">Hint</button>
-
+		
 		<div id="scoreboard">
 			<div id="scoreboardBackground" onclick="game.OnScoreboardClick()">
 				<div id="scoreboardPlayerRegionSouth" class="scoreboardPlayerRegion">
@@ -130,71 +131,21 @@
 	<div id="cards_region"></div>
 
 	<div id="adView" align="center">
-		<!--
-			<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- Hearts Card Classic Web -->
 			<ins class="adsbygoogle"
-					style="display:inline-block;width:728px;height:90px"
-					data-ad-client="ca-pub-2857597813964310"
-					data-ad-slot="1564710492"></ins>
+				style="display:inline-block;width:728px;height:90px"
+				data-ad-client="ca-pub-2857597813964310"
+				data-ad-slot="8562908545"></ins>
 			<script>
 			(adsbygoogle = window.adsbygoogle || []).push({});
-			</script>
-		-->
+		</script>
 	</div>
 
 	
 	<div id="GameOverView">
-		<div id="GameOverResultText">You win!</div>
-		<div id="GameOverSkunkText">Skunk!</div>
-		<button id="game_over_close_button" class="close_button" onclick="GameOverClosedClick()">X</button>
-
-		<table id="GameOverResultsTable">
-			<tr>
-				<td></td>
-				<td style="width:100px">You</td>
-				<td style="width:100px">Opponent</td>
-			</tr>
-			<tr>
-				<td>Total score:</td>
-				<td colspan="2" style="position: absolute; width:200px; height:25px;">
-					<div class="GameOverViewTableResultBackgroundFill"></div>
-					<div id="GameOverTotalFill" class="GameoverViewTableResultComputerFill"></div>
-					<div id="GameOverTotalScoreYou" class="GameOverViewTableResultYouScore" style="font-weight:bold; font-size:16pt;">107</div>
-					<div id="GameOverTotalScoreOpp" class="GameOverViewTableResultOppScore" style="font-weight:bold; font-size:16pt;">128</div>
-				</td>
-			</tr>
-			<tr>
-				<td>Pegging:</td>
-				<td colspan="2" style="position: absolute; width:200px; height:25px;">
-					<div class="GameOverViewTableResultBackgroundFill"></div>
-					<div id="GameOverPeggingFill" class="GameoverViewTableResultComputerFill"></div>
-					<div id="GameOverPeggingYou" class="GameOverViewTableResultYouScore">107</div>
-					<div id="GameOverPeggingOpp" class="GameOverViewTableResultOppScore">128</div>
-				</td>
-			</tr>
-			<tr>
-				<td>Hands:</td>
-				<td colspan="2" style="position: absolute; width:200px; height:25px;">
-					<div class="GameOverViewTableResultBackgroundFill"></div>
-					<div id="GameOverHandsFill" class="GameoverViewTableResultComputerFill"></div>
-					<div id="GameOverHandsYou" class="GameOverViewTableResultYouScore">107</div>
-					<div id="GameOverHandsOpp" class="GameOverViewTableResultOppScore">128</div>
-				</td>
-			</tr>
-			<tr>
-				<td>Cribs:</td>
-				<td colspan="2" style="position: absolute; width:200px; height:25px;">
-					<div class="GameOverViewTableResultBackgroundFill"></div>
-					<div id="GameOverCribsFill" class="GameoverViewTableResultComputerFill"></div>
-					<div id="GameOverCribsYou" class="GameOverViewTableResultYouScore">107</div>
-					<div id="GameOverCribsOpp" class="GameOverViewTableResultOppScore">128</div>
-				</td>
-			</tr>
-		</table>
-
-		<button id="GameOverSuboptimalButton" onclick="ShowSuboptimalHistoryButtonClick()">You made 6 suboptimal plays this game for a cummultaive error of 10.1 points.</button>
-
-		<div id="GameOverSuboptimalPlaysView"></div>
+		<div id="GameOverResultText">You won!</div>
+		<div id="GameOverResultText2">vs the easy players</div>
 	</div>
 
 	<div id="BubbleScoreHeartTemplate" class="BubbleScoreHeart">

@@ -45,18 +45,15 @@ function SetStatistic(statistic, value) {
 function redirectToAppStore() {
 	var userAgent = navigator.userAgent || navigator.vendor || window.opera;
   
-	// TODO - get app store url for android and iphones
-	/*
 	if (/android/i.test(userAgent)) {
-		window.location.replace("https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwiK16z69vrXAhUEz2MKHQTPBHAQFggwMAE&url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.gamesbypost.cribbageclassic%26hl%3Den&usg=AOvVaw0PiEE9Anr8UoUvzp2L47vp");
+		window.location.replace("https://play.google.com/store/apps/details?id=com.gamesbypost.heartscardclassic");
 		return true;
 	}
   
 	if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-		window.location.replace("https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=4&cad=rja&uact=8&ved=0ahUKEwiK16z69vrXAhUEz2MKHQTPBHAQFgg9MAM&url=https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fcribbage-classic%2Fid901900997%3Fmt%3D8&usg=AOvVaw17oi1oNyltt6JXntrfOCaO");
+		window.location.replace("https://itunes.apple.com/us/app/hearts-card-classic/id1365096468?mt=8");
 		return true;
 	}
-	*/
-
+	
 	return false;
 }

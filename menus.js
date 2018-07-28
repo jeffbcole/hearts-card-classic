@@ -85,11 +85,22 @@ function MenuButtonPressed() {
 			display = 'block';
 		}
 		
-		ShowMainMenu();
+		ShowMainMenu(true);
 	}
 }
 
-function ShowMainMenu() {
+function ShowMainMenu(showCloseButton) {
+	if (showCloseButton) {
+		var el = document.getElementById('menu_main_close_button');
+		with(el.style) {
+			display = 'block';
+		}
+	} else {
+		var el = document.getElementById('menu_main_close_button');
+		with(el.style) {
+			display = 'none';
+		}
+	}
 	MenuCardAppear('menu_main');
 	HideMenuButton();
 }
@@ -294,6 +305,20 @@ function InitializeStatisticsView() {
 	}
 }
 
+function GetTotalGamesPlayed() {
+	var difficulties = ["Easy", "Standard", "Pro"];
+	var totalGamesPlayed = 0;
+	for (var i=0; i<difficulties.length; i++) {
+		var curDifficulty = difficulties[i];
+		var wins = GetStatistic('stat_wins_' + curDifficulty);
+		var stat2nds = GetStatistic('stat_2nd_' + curDifficulty);
+		var stat3rds = GetStatistic('stat_3rd_' + curDifficulty);
+		var stat4ths = GetStatistic('stat_4th_' + curDifficulty);
+		totalGamesPlayed += (wins + stat2nds + stat3rds + stat4ths);
+	}
+	return totalGamesPlayed;
+}
+
 function ResetStatisticsButtonClick() {
 	var r = confirm("Are you sure you want to reset your statistics?");
 	if (r != true) {
@@ -316,25 +341,5 @@ function ResetStatisticsButtonClick() {
 	}
 	
 	InitializeStatisticsView();
-}
-
-function GameOverClosedClick() {
-	visibleMenuCards.pop();
-	var elem = document.getElementById('GameOverView');
-	with(elem.style) {
-		WebkitTransition = MozTransition = OTransition = msTransition = "0.4s ease-in";
-		top = "0%";
-		opacity = 0;
-	}
-	setTimeout(function() {
-		elem.style.visibility = 'hidden';
-
-		// Show the close button
-		var el = document.getElementById('menu_main_close_button');
-		with(el.style) {
-			display = 'none';
-		}
-		ShowMainMenu();
-	}, 500);
 }
 

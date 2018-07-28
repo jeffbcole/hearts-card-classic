@@ -5,13 +5,13 @@ var Game = function () {
     var cardLoweredHeight = 162;
     
     // Local variables
-    var currentMoveStage = "";
     var scoreboard = new Scoreboard();
     var currentDraggedCardView;
     var currentPlayerHandCardSpacing = 0;
     var autoPlayBoundaryY = 0;
 
     // Members
+    this.currentMoveStage = "";
     this.skillLevel = "";
     this.losingScore = 0;
     this.players = [];
@@ -148,7 +148,7 @@ var Game = function () {
 
         scoreboard.Contract();
 
-        if (currentMoveStage === 'ChoosingPassCards') {
+        if (game.currentMoveStage === 'ChoosingPassCards') {
             var tappedCardView = e.target;
             if (tappedCardView.isClickable) {
                 currentDraggedCardView = tappedCardView;
@@ -161,7 +161,7 @@ var Game = function () {
                 currentDraggedCardView.startPosition = [e.clientX, e.clientY];
                 passingCardsPointerPressed();
             }
-        } else if (currentMoveStage === 'ChoosingTrickCard') {
+        } else if (game.currentMoveStage === 'ChoosingTrickCard') {
             var tappedCardView = e.target;
             if (tappedCardView.isClickable) {
                 currentDraggedCardView = tappedCardView;
@@ -497,17 +497,16 @@ var Game = function () {
         }
     }
 
-    this.StartAGame = function (difficulty) {
-
+    this.InitializeGame = function(difficulty) {
         // Game properties
         this.skillLevel = difficulty;
         this.losingScore = Number(GetSetting('setting_losing_score'));
         this.cardsPlayedThisRound = [];
         this.trickCards = [];
         this.roundNumber = 0;
-        currentMoveStage = 'None';
+        this.currentMoveStage = 'None';
         this.roundScores = [];
-        
+
         this.players = [];
         var player = new Player();
         player.Initialize('You', true, 'Pro', 'South');
@@ -554,6 +553,11 @@ var Game = function () {
             }
             break;
         }
+    }
+
+    this.StartAGame = function (difficulty) {
+
+        this.InitializeGame(difficulty);        
 
         // Clean up all cards and messages
         for (var i = 0; i < cards.length; i++) {
@@ -712,10 +716,12 @@ var Game = function () {
             var endtop = cardLocation[1];
             var cardView = player.cards[i].cardView;
             flipDownCard(cardView, false);
+            lowerCard(cardView);
             cardView.positionIndex = i;
             cardView.isClickable = false;
             with (cardView.style) {
                 transition = "none";
+                animationDelay = "";
                 left = startLeft + "px";
                 top = startTop + "px";
                 zIndex = i + 1;
@@ -747,10 +753,12 @@ var Game = function () {
             var endtop = cardLocation[1];
             var cardView = player.cards[i].cardView;
             flipDownCard(cardView, false);
+            lowerCard(cardView);
             cardView.positionIndex = i;
             cardView.isClickable = false;
             with (cardView.style) {
                 transition = "none";
+                animationDelay = "";
                 left = startLeft + "px";
                 top = startTop + "px";
                 zIndex = i + 1;
@@ -782,10 +790,12 @@ var Game = function () {
             var endtop = cardLocation[1];
             var cardView = player.cards[i].cardView;
             flipDownCard(cardView, false);
+            lowerCard(cardView);
             cardView.positionIndex = i;
             cardView.isClickable = false;
             with (cardView.style) {
                 transition = "none";
+                animationDelay = "";
                 left = startLeft + "px";
                 top = startTop + "px";
                 zIndex = i + 1;
@@ -817,10 +827,12 @@ var Game = function () {
             var endtop = cardLocation[1];
             var cardView = player.cards[i].cardView;
             flipDownCard(cardView, false);
+            lowerCard(cardView);
             cardView.positionIndex = i;
             cardView.isClickable = true;
             with (cardView.style) {
                 transition = "none";
+                animationDelay = "";
                 left = startLeft + "px";
                 top = startTop + "px";
                 zIndex = i + 1;
@@ -841,7 +853,7 @@ var Game = function () {
                 cardView.style.transform = 'rotate(' + position[2] + 'deg)';
                 setTimeout(flipUpCard, i * 80, cardView);
             }
-            currentMoveStage = "ChoosingPassCards";
+            game.currentMoveStage = "ChoosingPassCards";
         }, 50);
         
         setTimeout(function() {
@@ -886,13 +898,14 @@ var Game = function () {
             cardView.positionIndex = i;
             cardView.positionFunction = "GetHandCardLocation('" + playerPosition + "', " + i + ", " + player.cards.length + ")";
             cardView.style.zIndex = i + 100;
-            var position = eval(cardView.positionFunction);
-            cardView.style.transition =  duration + " ease-out";
-            cardView.style.transitionDelay = '0ms';
-            cardView.style.left = position[0] + "px";
-            cardView.style.top = position[1] + "px";
-            cardView.style.transform = 'rotate(' + position[2] + 'deg)';
-        
+            with (cardView.style) {
+                var aposition = eval(cardView.positionFunction);
+                transition =  duration + " ease-out";
+                transitionDelay = '0ms';
+                left = aposition[0] + "px";
+                top = aposition[1] + "px";
+                transform = 'rotate(' + aposition[2] + 'deg)';
+            }
         }
     }
 
@@ -945,7 +958,7 @@ var Game = function () {
             }
         }
 
-        this.currentMoveStage = "ChoosingPassingCards";
+        this.currentMoveStage = "ChoosingPassCards";
         
         if (this.skillLevel === 'Easy' || GetSetting('setting_hints')) {
           ShowHintButton(1000);
@@ -1046,7 +1059,7 @@ var Game = function () {
         var elapsed = Date.now() - currentDraggedCardView.startTime;
         var tapped = elapsed < 500 && distance < 10;
 
-        if (currentMoveStage === 'ChoosingPassCards') {
+        if (game.currentMoveStage === 'ChoosingPassCards') {
             if (currentDraggedCardWasLastInHand) {
                 if (tapped || (currentDraggedCardView.offsetTop < autoPlayBoundaryY)) {
                     DropCurrentDraggedCardViewIntoPassingSlot();
@@ -1060,7 +1073,7 @@ var Game = function () {
                     DropCurrentDraggedCardViewIntoPassingSlot();
                 }
             }
-        } else if (currentMoveStage === 'ChoosingTrickCard') {
+        } else if (game.currentMoveStage === 'ChoosingTrickCard') {
             if (tapped) {
                 game.DropCardInTrickPile();
             } else {
@@ -1216,18 +1229,24 @@ var Game = function () {
         this.BumpHintCards();
     }
 
+    this.OnTestButtonClick = function() {
+        var player = this.players[0];
+        var bestResult = FindOptimalPlayForCurrentPlayer(game, true, true);
+        BumpCard(bestResult.optimalCard.cardView);
+    }
+
     this.BumpHintCards = function() {
         var optimalCards = [];
-        if (currentMoveStage === 'ChoosingPassCards') {
+        if (this.currentMoveStage === 'ChoosingPassCards') {
             var player = this.players[0];
             var bestCards = player.FindBestPassingCards();
             for (var i=0; i<bestCards.length; i++) {
                 optimalCards.push(bestCards[i]);
             }
             
-        } else if (currentMoveStage === 'ChoosingTrickCard') {
+        } else if (this.currentMoveStage === 'ChoosingTrickCard') {
             var player = this.players[0];
-            var bestCard = player.FindBestPlayingCard(game);
+            var bestCard = player.FindBestPlayingCard(game, true);
             optimalCards.push(bestCard);
         }
 
@@ -1236,7 +1255,7 @@ var Game = function () {
 
     this.passingCardsConfirmed = function() {
         // PerformCardPassingBetweenPlayers
-        currentMoveStage = 'None';
+        this.currentMoveStage = 'None';
         HidePassCardsButton();
         HideHintButton();
 
@@ -1456,7 +1475,7 @@ var Game = function () {
             ShowHintButton(0);
         }
 
-        currentMoveStage = "ChoosingTrickCard";
+        this.currentMoveStage = "ChoosingTrickCard";
     }
 
     function GetTrickPlayPromptLocation() {
@@ -1522,7 +1541,7 @@ var Game = function () {
     }
 
     this.OnPlayerChosePlayCard = function(card) {
-        currentMoveStage = 'None';
+        this.currentMoveStage = 'None';
         var playerPrompt = document.getElementById('player_play_prompt');
         with (playerPrompt.style) {
             transition = "0.1s linear";
@@ -1985,7 +2004,390 @@ var Game = function () {
     }
 
     this.OnGameOver = function(winner) {
-        // TODO
+        var humanPlayerPlace = this.GetTheHumanPlayersPlace();
+        var gameOverLine1 = "";
+        var gameOverLine2 = "";
+        switch (humanPlayerPlace) {
+            case 1:
+                gameOverLine1 = "You won!";
+                gameOverLine2 = "vs the " + this.skillLevel.toLowerCase() + " players";
+                var setting = 'stat_wins_' + this.skillLevel;
+                var settingVal = GetStatistic(setting);
+                SetStatistic(setting, settingVal + 1);
+                break;
+            case 2:
+                gameOverLine1 = winner.name + " won.";
+                switch (humanPlayerPlace) { case 2: gameOverLine2 = "You finished in 2nd place."; break; case 3: gameOverLine2 = "You finished in 3rd place."; break; case 4: gameOverLine2 = "You finished in 4th place."; break;};
+                var setting = 'stat_2nd_' + this.skillLevel;
+                var settingVal = GetStatistic(setting);
+                SetStatistic(setting, settingVal + 1);
+                break;
+            case 3:
+                gameOverLine1 = winner.name + " won.";
+                switch (humanPlayerPlace) { case 2: gameOverLine2 = "You finished in 2nd place."; break; case 3: gameOverLine2 = "You finished in 3rd place."; break; case 4: gameOverLine2 = "You finished in 4th place."; break;};
+                var setting = 'stat_3rd_' + this.skillLevel;
+                var settingVal = GetStatistic(setting);
+                SetStatistic(setting, settingVal + 1);
+                break;
+            case 4:
+                gameOverLine1 = winner.name + " won.";
+                switch (humanPlayerPlace) { case 2: gameOverLine2 = "You finished in 2nd place."; break; case 3: gameOverLine2 = "You finished in 3rd place."; break; case 4: gameOverLine2 = "You finished in 4th place."; break;};
+                var setting = 'stat_4th_' + this.skillLevel;
+                var settingVal = GetStatistic(setting);
+                SetStatistic(setting, settingVal + 1);
+                break;
+        }
+
+        HideHintButton();
+        HideMenuButton();
+        HideAllMessages();
+
+        var gameOverView = document.getElementById('GameOverView');
+        var gameOverLine1Elem = document.getElementById('GameOverResultText');
+        gameOverLine1Elem.innerText = gameOverLine1;
+        var gameOverLine2Elem = document.getElementById('GameOverResultText2');
+        gameOverLine2Elem.innerText = gameOverLine2;
+        with (gameOverView.style) {
+            transition = 'none';
+            transform = 'translate(-50%,-50%) scale(0)';
+            top = "50%";
+            opacity = 1;
+            visibility = 'visible';
+        }   
+        setTimeout(function() {
+            with (gameOverView.style) {
+                transition = "0.5s ease-out";
+                transform = 'translate(-50%,-50%) scale(1)';
+            }
+        }, 300); 
+        setTimeout(function() {
+            with (gameOverView.style) {
+                transition = "0.5s ease-in";
+                transform = 'translate(-50%,-50%) scale(1)';
+                top = "-200px";
+            }
+            scoreboard.SlideUp();
+
+            ShowMainMenu(false);
+            ShowTitle();
+            
+        }, 7000);
+
+        this.AnimateGameOverCardAnimations();
+    }
+
+    this.GetTheHumanPlayersPlace = function() {
+        var p = [];
+        for (var j=0; j<4; j++) {
+            p.push(this.players[j]);
+        }
+        p.sort(function(a,b) { 
+            return a.gameScore - b.gameScore;
+        });
+        for (var i=0; i<4; i++) {
+            if (p[i].isHuman) {
+                return i+1;
+            }
+        }
+        return 0;
+    }
+
+    this.AnimateGameOverCardAnimations = function() {
+        var curAnimationId = GetTotalGamesPlayed();
+        var totalAnimationsAvailable = 4;
+        var cardAnimStartDelay = 1000;
+        switch (curAnimationId%totalAnimationsAvailable) {
+            case 0:
+            {
+                // Gravity Bouncing
+                
+                var startLeft = 200;
+                var startTop = -cardLoweredHeight - 30;
+                for (var i=0; i<cards.length; i++) {
+                    var cardView = cards[i].cardView;
+                    flipDownCard(cardView, false);
+                    raiseCard(cardView);
+                    with (cardView.style) {
+                        transition = 'none';
+                        transform = 'none';
+                        visibility = 'visible';
+                        zIndex = i;
+                        left = startLeft + 'px';
+                        top = startTop + 'px';
+                    }
+                }
+
+                for (var i=0; i<cards.length; i++) {
+                    var cardView = cards[i].cardView;
+                    var sheet = document.createElement('style');
+                    var keyframesText = "@keyframes gameOverAnim" + i + " {";
+                
+                    var totalTime = 9;
+                    var curTime = 0;
+                    var deltaTime = 0.1;
+                    var gravity = [0, 200];
+                    var curVelocity = [200*deltaTime, 0];
+                    var curPositionX = startLeft;
+                    var curPositionY = startTop;
+                    var isFallingOutOfView = false;
+                    var bottomBounceY = window.innerHeight - cardLoweredHeight;
+                    while (curTime < totalTime) {
+                        var percentComplete = 100 * curTime / totalTime;
+                        keyframesText = keyframesText + percentComplete + '% {opacity: 1; left: ' + curPositionX + 'px; top: ' + curPositionY + 'px;}';
+                        
+                        curPositionX = curPositionX + curVelocity[0];
+                        curPositionY = curPositionY + curVelocity[1];
+                        curVelocity[0] = curVelocity[0] + gravity[0]*deltaTime;
+                        curVelocity[1] = curVelocity[1] + gravity[1]*deltaTime;
+                        
+                        isFallingOutOfView = totalTime - curTime < 1;
+
+                        // Bounce
+                        var bounceDampen = 0.75;
+                        if (!isFallingOutOfView) {
+                            if (curPositionY > bottomBounceY) {
+                                var overshoot = curPositionY - bottomBounceY;
+                                curPositionY = bottomBounceY;
+                                curVelocity[1] = curVelocity[1] - gravity[1]*deltaTime;
+                                curVelocity[1] = -curVelocity[1]*bounceDampen;
+                            }
+                        }
+                        if (curPositionX < 0 || curPositionX > window.innerWidth-cardLoweredWidth) {
+                            curPositionX = curPositionX - curVelocity[0];
+                            curVelocity[0] = curVelocity[0] - gravity[0]*deltaTime;
+                            curVelocity[0] = -curVelocity[0];
+                        }
+                                
+                        curTime += deltaTime;
+                    }
+                    
+                    keyframesText = keyframesText + '100% { opacity: 0; left: ' + (spinCenterX - cardLoweredWidth*0.5) + 'px; top: ' + (spinCenterY - cardLoweredHeight*0.5) + 'px;}';
+                    keyframesText += '}';
+                    sheet.textContent = keyframesText;
+                    cardView.appendChild(sheet);
+                    cardView.addEventListener('animationend', 
+                    function(event) { 
+                        event.target.style.animation = '';
+                        if (event.target.children.length > 1) {
+                            event.target.removeChild(event.target.children[1]);
+                        }
+                    }, false);
+                    cardView.style.animation = 'gameOverAnim' + i + ' ' + totalTime + 's linear ' + (i*100 + cardAnimStartDelay) + 'ms 1';
+                }
+
+            }
+            break;
+
+            case 1:
+            {
+                // Gravity Bouncing off game over view
+                                
+                var startLeft = window.innerWidth*0.5 - 200;
+                var startTop = -cardLoweredHeight - 30;
+                for (var i=0; i<cards.length; i++) {
+                    var cardView = cards[i].cardView;
+                    flipDownCard(cardView, false);
+                    raiseCard(cardView);
+                    with (cardView.style) {
+                        transition = 'none';
+                        transform = 'none';
+                        visibility = 'visible';
+                        zIndex = i;
+                        left = startLeft + 'px';
+                        top = startTop + 'px';
+                    }
+                }
+
+                for (var i=0; i<cards.length; i++) {
+                    var cardView = cards[i].cardView;
+                    var sheet = document.createElement('style');
+                    var keyframesText = "@keyframes gameOverAnim" + i + " {";
+
+                    var totalTime = 9;
+                    var curTime = 0;
+                    var deltaTime = 0.1;
+                    var gravity = [0, 200];
+                    var curVelocity = [200*deltaTime, 0];
+                    var curPositionX = startLeft;
+                    var curPositionY = startTop;
+                    var isFallingOutOfView = false;
+                    var bottomBounceY = window.innerHeight - cardLoweredHeight;
+                    var gameOverViewWidth = 340;
+                    var gameOverViewHeight = 100;
+                    var gameOverViewLeft = (window.innerWidth - gameOverViewWidth)*0.5 - cardLoweredWidth*0.5;
+                    var gameOverViewRight = gameOverViewLeft + gameOverViewWidth + cardLoweredWidth*0.5;
+                    var gameOverViewTop = (window.innerHeight - gameOverViewHeight)*0.5 - cardLoweredHeight*1.1;
+
+                    while (curTime < totalTime) {
+                        var percentComplete = 100 * curTime / totalTime;
+                        keyframesText = keyframesText + percentComplete + '% {opacity: 1; left: ' + curPositionX + 'px; top: ' + curPositionY + 'px;}';
+                        
+                        var prevPositionY = curPositionY;
+                        curPositionX = curPositionX + curVelocity[0];
+                        curPositionY = curPositionY + curVelocity[1];
+                        curVelocity[0] = curVelocity[0] + gravity[0]*deltaTime;
+                        curVelocity[1] = curVelocity[1] + gravity[1]*deltaTime;
+                        
+                        isFallingOutOfView = totalTime - curTime < 1;
+
+                        // Bounce
+                        var bounceDampen = 0.75;
+                        if (!isFallingOutOfView) {
+                            if (curPositionY > bottomBounceY) {
+                                curPositionY = bottomBounceY;
+                                curVelocity[1] = curVelocity[1] - gravity[1]*deltaTime;
+                                curVelocity[1] = -curVelocity[1]*bounceDampen;
+                            } else {
+                                // Bounce off game over view
+                                if (curPositionX > gameOverViewLeft &&
+                                    curPositionX < gameOverViewRight &&
+                                    prevPositionY <= gameOverViewTop &&
+                                    curPositionY > gameOverViewTop
+                                    ) 
+                                {
+                                    curPositionY = gameOverViewTop;
+                                    curVelocity[1] = curVelocity[1] - gravity[1]*deltaTime;
+                                    curVelocity[1] = -curVelocity[1]*bounceDampen;    
+                                }
+                            }
+                        }
+                        if (curPositionX < 0 || curPositionX > window.innerWidth-cardLoweredWidth) {
+                            curPositionX = curPositionX - curVelocity[0];
+                            curVelocity[0] = curVelocity[0] - gravity[0]*deltaTime;
+                            curVelocity[0] = -curVelocity[0];
+                        }
+                                
+                        curTime += deltaTime;
+                    }
+                    
+                    keyframesText = keyframesText + '100% { opacity: 0; left: ' + (spinCenterX - cardLoweredWidth*0.5) + 'px; top: ' + (spinCenterY - cardLoweredHeight*0.5) + 'px;}';
+                    keyframesText += '}';
+                    sheet.textContent = keyframesText;
+                    cardView.appendChild(sheet);
+                    cardView.addEventListener('animationend', 
+                    function(event) { 
+                        event.target.style.animation = '';
+                        if (event.target.children.length > 1) {
+                            event.target.removeChild(event.target.children[1]);
+                        }
+                    }, false);
+                    cardView.style.animation = 'gameOverAnim' + i + ' ' + totalTime + 's linear ' + (i*100 + cardAnimStartDelay) + 'ms 1';
+                }
+            }
+            break;
+
+            case 2:
+            {
+                // Spiral into center
+                var totalTime = 7;       
+                var startLeft = window.innerWidth*0.5 - 200;
+                var startTop = -cardLoweredHeight - 30;
+                for (var i=0; i<cards.length; i++) {
+                    var cardView = cards[i].cardView;
+                    flipDownCard(cardView, false);
+                    raiseCard(cardView);
+                    with (cardView.style) {
+                        transition = 'none';
+                        transform = 'none';
+                        visibility = 'visible';
+                        zIndex = i;
+                        left = startLeft + 'px';
+                        top = startTop + 'px';
+                    }
+                }
+
+                for (var i=0; i<cards.length; i++) {
+                    var cardView = cards[i].cardView;
+                    var sheet = document.createElement('style');
+                    var keyframesText = "@keyframes gameOverAnim" + i + " {";
+
+                    var fullAngle = Math.PI * 2 * 4.25;
+                    var spinCenterX = window.innerWidth*0.5;
+                    var spinCenterY = window.innerHeight*0.5;
+                    var radius = Math.sqrt((spinCenterY - startTop)*(spinCenterY - startTop) + (spinCenterX - startLeft)*(spinCenterX - startLeft));
+                    for (var angle = fullAngle; angle >= 0; angle-=0.15) {
+                        var percentComplete = 100 * (1 - (angle / fullAngle));
+                        
+                        var curPositionX = radius*Math.cos(-angle) + spinCenterX - cardLoweredWidth*0.5;
+                        var curPositionY = radius*Math.sin(-angle) + spinCenterY - cardLoweredHeight*0.5;
+                        keyframesText = keyframesText + percentComplete + '% { opacity: 1; left: ' + curPositionX + 'px; top: ' + curPositionY + 'px;}';
+                        radius*=0.985;
+                    }
+                    
+                    keyframesText = keyframesText + '100% { opacity: 0; left: ' + (spinCenterX - cardLoweredWidth*0.5) + 'px; top: ' + (spinCenterY - cardLoweredHeight*0.5) + 'px;}';
+                    keyframesText += '}';
+                    sheet.textContent = keyframesText;
+                    cardView.appendChild(sheet);
+                    cardView.addEventListener('animationend', 
+                    function(event) { 
+                        event.target.style.animation = '';
+                        if (event.target.children.length > 1) {
+                            event.target.removeChild(event.target.children[1]);
+                        }
+                    }, false);
+                    cardView.style.animation = 'gameOverAnim' + i + ' ' + totalTime + 's linear ' + (i*100 + cardAnimStartDelay) + 'ms 1';
+                }
+            }
+            break;
+
+            case 3:
+            {
+                // Spiral out from center
+                var slideInTime = 0.5;
+                var totalTime = 7;       
+                var startLeft = window.innerWidth*0.5 - cardLoweredWidth*0.5;
+                var startTop = -cardLoweredHeight - 30;
+                for (var i=0; i<cards.length; i++) {
+                    var cardView = cards[i].cardView;
+                    flipDownCard(cardView, false);
+                    raiseCard(cardView);
+                    with (cardView.style) {
+                        transition = 'none';
+                        transform = 'none';
+                        visibility = 'visible';
+                        zIndex = i;
+                        left = startLeft + 'px';
+                        top = startTop + 'px';
+                    }
+                }
+
+                for (var i=0; i<cards.length; i++) {
+                    var cardView = cards[i].cardView;
+                    var sheet = document.createElement('style');
+                    var keyframesText = "@keyframes gameOverAnim" + i + " {";
+
+                    var slideInPercent = slideInTime / (slideInTime + totalTime);
+                    keyframesText = keyframesText + (slideInPercent*100) + '% { opacity: 1; left: ' + (spinCenterX - cardLoweredWidth*0.5) + 'px; top: ' + (spinCenterY - cardLoweredHeight*0.5) + 'px;}';
+                    
+                    var fullAngle = Math.PI * 2 * 4.25;
+                    var spinCenterX = window.innerWidth*0.5;
+                    var spinCenterY = window.innerHeight*0.5;
+                    var fullRadius = Math.sqrt((spinCenterY - startTop)*(spinCenterY - startTop) + (spinCenterX - startLeft)*(spinCenterX - startLeft));
+                    for (var angle = 0.01; angle < fullAngle; angle+=0.15) {
+                        var percentComplete = (angle / fullAngle) * (1-slideInPercent);
+                    
+                        var radius = (angle/fullAngle)*fullRadius;
+                        var curPositionX = radius*Math.cos(-angle) + spinCenterX - cardLoweredWidth*0.5;
+                        var curPositionY = radius*Math.sin(-angle) + spinCenterY - cardLoweredHeight*0.5;
+                        keyframesText = keyframesText + ((slideInPercent + percentComplete)*100) + '% { opacity: 1; left: ' + curPositionX + 'px; top: ' + curPositionY + 'px;}';
+                    }
+                    
+                    keyframesText = keyframesText + '100% { opacity: 0; left: ' + startLeft + 'px; top: ' + startTop + 'px;}';
+                    keyframesText += '}';
+                    sheet.textContent = keyframesText;
+                    cardView.appendChild(sheet);
+                    cardView.addEventListener('animationend', 
+                    function(event) { 
+                        event.target.style.animation = '';
+                        if (event.target.children.length > 1) {
+                            event.target.removeChild(event.target.children[1]);
+                        }
+                    }, false);
+                    cardView.style.animation = 'gameOverAnim' + i + ' ' + totalTime + 's linear ' + (i*100 + cardAnimStartDelay) + 'ms 1';
+                }
+            }
+            break;
+        }
     }
 
     this.OnScoreboardClick = function() {
@@ -2029,6 +2431,7 @@ var Game = function () {
                 var position = eval(cardView.positionFunction);
                 cardView.style.left = position[0] + "px";
                 cardView.style.top = position[1] + "px";
+                cardView.style.transform = 'rotate(' + position[2] + "deg)";
                 cardView.style.transition = ease;
             }
         }

@@ -80,18 +80,17 @@ var Player = function() {
         if (this.isHuman) {
             game.PromptPlayerToPlayCard();
         } else {
-            var card = this.FindBestPlayingCard(game);
+            var card = this.FindBestPlayingCard(game, false);
             game.OnPlayerChosePlayCard(card);
         }
     }
 
-    this.FindBestPlayingCard = function(aGame) {
+    this.FindBestPlayingCard = function(aGame, isForHint) {
         var possiblePlays = aGame.GetLegalCardsForCurrentPlayerTurn();
         switch (this.skillLevel) {
             case 'Easy':
                 return possiblePlays[0];
             case 'Standard':
-            case 'Pro':// TODO: make pro method
                 if (aGame.trickCards.length === 0) {
                     // Lead with the lowest card value possible
                     var play = possiblePlays[0];
@@ -119,7 +118,13 @@ var Player = function() {
                             }
                         }
 
-                        if (aGame.trickCards.length<3) {
+                        var currentPlayer = aGame.players[aGame.turnIndex%4];
+                        if (currentPlayer.cards.length === 13) {
+                            // First play of the round so there is no chance of taking a point
+                            // Play the highest card possible
+                            return possiblePlays[possiblePlays.length-1];
+
+                        } else if (aGame.trickCards.length<3) {
                             // Play the highest card that will not take the hand
                             var curPlay = possiblePlays[0];
                             if (curPlay.value > highestCardInTrick) {
@@ -204,7 +209,9 @@ var Player = function() {
                         return possiblePlays[0];
                     }
                 }
+            case 'Pro':
+                var optimalPlayResult = FindOptimalPlayForCurrentPlayer(aGame, isForHint, false);
+                return optimalPlayResult.optimalCard;
         }
-        
     }
 }

@@ -128,6 +128,9 @@ var Scoreboard = function () {
         }
 
         this.Contract();
+
+        var difficultyView = document.getElementById('scoreboardDifficulty');
+        difficultyView.innerHTML = "";
     }
 
     this.UpdateScores = function(animate) {
@@ -140,9 +143,11 @@ var Scoreboard = function () {
                 playerBarFill.style.transition = "none";
             }
             var percent = 100 * player.gameScore / game.losingScore;
+            if (percent > 100) {
+                percent = 100;
+            }
             playerBarFill.style.width = percent + "%";
 
-            // TODO: increment the player score text over time
             var playerScore = document.getElementById('scoreboardPlayerScore' + player.playerPosition);
             playerScore.innerHTML = player.gameScore;
         }
