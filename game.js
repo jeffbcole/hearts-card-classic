@@ -1328,7 +1328,7 @@ var Game = function () {
                     // Pass right
                     for (var i=0; i<4; i++) {
                         var player = game.players[i];
-                        var passPlayer = game.players[(i+1)%4];
+                        var passPlayer = game.players[(i-1+4)%4];
                         for (var j=0; j<player.passingCards.length; j++) {
                             var idx = Math.floor(Math.random() * Math.floor(passPlayer.cards.length));
                             passPlayer.cards.splice(idx, 0, player.passingCards[j]);
@@ -1344,7 +1344,7 @@ var Game = function () {
                     // Pass across
                     for (var i=0; i<4; i++) {
                         var player = game.players[i];
-                        var passPlayer = game.players[(i+1)%4];
+                        var passPlayer = game.players[(i+2)%4];
                         for (var j=0; j<player.passingCards.length; j++) {
                             var idx = Math.floor(Math.random() * Math.floor(passPlayer.cards.length));
                             passPlayer.cards.splice(idx, 0, player.passingCards[j]);
