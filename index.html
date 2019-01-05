@@ -50,6 +50,29 @@
 	<script type="text/javascript" src="player.js"></script>
 	<script type="text/javascript" src="GameSimulator.js"></script>
 
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+	<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+	<script>
+	window.addEventListener("load", function(){
+	window.cookieconsent.initialise({
+		"palette": {
+    "popup": {
+      "background": "#252e39"
+    },
+    "button": {
+      "background": "#14a7d0"
+    }
+  },
+	"theme": "edgeless",
+	"position": "bottom-right",
+	"content": {
+		"message": "This site uses cookies to analyze traffic and for ad personalization and ad measurement purposes.",
+		"dismiss": "OK",
+		"link": "Learn more",
+		"href": "https://policies.google.com/technologies/cookies"
+	}
+	})});
+	</script>
 </head>
 
 <body onresize="game.OnResizeWindow()">
