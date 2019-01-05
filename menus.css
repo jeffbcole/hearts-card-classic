@@ -1030,3 +1030,114 @@ input:checked + .slider:before {
 	font-size: 13pt;
 	text-anchor: left;
 }
+
+
+#get_more_games_button {
+	cursor: pointer;
+	position: absolute;
+	border:#FFFFFF 2px solid;
+	border-radius:15px;
+	background:#222222;
+	color:white;
+	width:100pt;
+	height:50pt;
+	font-size:12pt;
+	right: 15pt;
+	bottom: 10pt;
+	box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+}
+
+#get_more_games_button:hover {
+	background:black;
+}
+
+#play_more_games_menu {
+	position: absolute;
+	border:#FFFFFF 2px solid;
+	border-radius:15px;
+	background:black;
+	color:white;
+	width:180pt;
+	height:200pt;
+	right: 15pt;
+	bottom: -200pt;
+	box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+	z-index: 1000;
+	opacity:0;
+	pointer-events: none;
+}
+
+#play_more_games_title {
+	text-align:center;
+	font-size:16pt;
+	position:absolute;
+	top:7px;
+	left:50%;
+	width:100pt;
+	transform: translate(-50%, 0%);	
+}
+
+.more_games_icon_button {
+	display: block;
+	position: relative;
+	cursor: pointer;
+	border:#FFFFFF 2px solid;
+	border-radius:5px;
+	background-image: url('images/woodboard.jpg');
+	background-size: contain;
+	color:white;
+	font-size:24pt;
+	width:90%;
+	height:50pt;
+	font-size:24pt;
+	margin-left:5%;
+	margin-right:5%;
+	margin-top:17pt;
+	margin-bottom:5pt;
+}
+
+.more_games_icon_link {
+	display: block;
+}
+
+.more_games_icon_title {
+	position: absolute;
+	top: 10pt;
+	left: 60pt;
+	width: 100pt;
+}
+
+.more_games_icon_title1, .more_games_icon_title2 {
+	font-family: 'Times New Roman', Times, serif; 
+	text-shadow: 2pt 2pt rgba(0,0,0,0.5); 
+}
+
+.more_games_icon_title1 {
+	font-size: 18pt;
+	line-height: 18pt; 
+}
+
+.more_games_icon_title2 {
+	font-size: 8pt;
+	line-height: 8pt; 
+}
+
+#more_games_icon_spades {
+	position: absolute;
+	background-image: url('images/app_icon_spades.png'); /* TODO: better icon */
+	background-size: cover;
+	width: 50pt;
+	height: 40pt;
+	top: 5pt;
+	left: 7pt;
+}
+
+#more_games_icon_cribbage {
+	position: absolute;
+	background-image: url('images/app_icon_cribbage.png'); /* TODO: better icon */
+	background-size: cover;
+	width: 40pt;
+	height: 40pt;
+	top: 5pt;
+	left: 12pt;
+}

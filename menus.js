@@ -343,3 +343,22 @@ function ResetStatisticsButtonClick() {
 	InitializeStatisticsView();
 }
 
+function PlayMoreGamesButtonPressed() {
+	var el = document.getElementById('play_more_games_menu');
+	with(el.style) {
+		WebkitTransition = MozTransition = OTransition = msTransition = "0.8s cubic-bezier(0.175, 0.885, 0.320, 1.275)";
+		bottom = '10pt';
+		opacity = 1;
+		pointerEvents = "auto";
+	}
+}
+
+function play_more_games_close_click() {
+	var el = document.getElementById('play_more_games_menu');
+	with(el.style) {
+		WebkitTransition = MozTransition = OTransition = msTransition = "0.4s ease-in";
+		bottom = "-200pt";
+		opacity = 0;
+		pointerEvents = "none";
+	}
+}
