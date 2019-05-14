@@ -357,7 +357,7 @@ function play_more_games_close_click() {
 	var el = document.getElementById('play_more_games_menu');
 	with(el.style) {
 		WebkitTransition = MozTransition = OTransition = msTransition = "0.4s ease-in";
-		bottom = "-200pt";
+		bottom = "-338px";
 		opacity = 0;
 		pointerEvents = "none";
 	}

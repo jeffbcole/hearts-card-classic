@@ -1122,7 +1122,7 @@ var Game = function () {
                 var spotLoc = GetPassingCardsLocation(i);
                 var distX = currentDraggedCardView.offsetLeft - spotLoc[0];
                 var distY = currentDraggedCardView.offsetTop - spotLoc[1];
-                var dist = Math.sqrt(distX*distX + distY+distY);
+                var dist = Math.sqrt(distX*distX + distY*distY);
                 if (dist < closestDistance) {
                     closestDistance = dist;
                     closestOpenPassingIndex = i;
