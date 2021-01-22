@@ -921,10 +921,10 @@ var Game = function () {
 
         var selectPassingCardsMessage = document.getElementById('select_passing_cards_message');
         switch (passingIndex) {
-            case 0:
+            case 1:
                 selectPassingCardsMessage.innerText = "Select 3 cards to pass left:";
                 break;
-            case 1:
+            case 2:
                 selectPassingCardsMessage.innerText = "Select 3 cards to pass right:";
                 break;
             default:
