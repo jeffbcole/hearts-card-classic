@@ -1057,9 +1057,9 @@ input:checked + .slider:before {
 	background:black;
 	color:white;
 	width:234px;
-	height:338px;
+	height:420px;
 	right: 20px;
-	bottom: -338px;
+	bottom: -420px;
 	box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
 	z-index: 1000;
 	opacity:0;
@@ -1119,6 +1119,16 @@ input:checked + .slider:before {
 .more_games_icon_title2 {
 	font-size: 8pt;
 	line-height: 8pt; 
+}
+
+#more_games_icon_solitaire {
+	position: absolute;
+	background-image: url('images/app_icon_solitaire.png');
+	background-size: cover;
+	width: 60px;
+	height: 56px;
+	top: 6px;
+	left: 12px;
 }
 
 #more_games_icon_spades {
